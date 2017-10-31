@@ -16,16 +16,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Stub in some book data to test with
-        ArrayList<String> books = new ArrayList<String>();
-        books.add("Stubbed Book 1");
-        books.add("Stubbed Book 2");
-        books.add("Stubbed Book 3");
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Stubbed Book 1", "Author 1"));
+        books.add(new Book("Stubbed Book 2", "Author"));
+        books.add(new Book("Stubbed Book 3", "Author"));
+        books.add(new Book("Stubbed Book 4", "Author"));
+        books.add(new Book("Stubbed Book 5", "Author"));
+        books.add(new Book("Stubbed Book 6", "Author"));
+        books.add(new Book("Stubbed Book 7", "Author"));
+        books.add(new Book("Stubbed Book 8", "Author"));
+        books.add(new Book("Stubbed Book 9", "Author 9"));
 
         //Find our book list setup in the XML
         ListView bookListView = (ListView) findViewById(R.id.list);
 
         //Create a new adapter for our list of books
-        mAdapter = new BookAdapter(this, new ArrayList<String>(books));
+        mAdapter = new BookAdapter(this, books);
 
         bookListView.setAdapter(mAdapter);
     }
