@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ListView bookListView = (ListView) findViewById(R.id.list);
 
         //Create a new adapter for our list of books
-        mAdapter = new BookAdapter(this, books);
+        mAdapter = new BookAdapter(this, QueryUtils.parseBooks(""));
 
         bookListView.setAdapter(mAdapter);
     }

@@ -852,6 +852,8 @@ public final class QueryUtils {
 
     public static ArrayList<Book> parseBooks (String bookJSON) {
 
+        bookJSON = SAMPLE_JSON_RESPONSE;
+
         //if the JSON string is empty or null, return early
         if (TextUtils.isEmpty(bookJSON)) {
             return null;
@@ -869,7 +871,14 @@ public final class QueryUtils {
                 JSONObject bookVolumeInfo = bookItem.getJSONObject("volumeInfo");
                 String bookTitle = bookVolumeInfo.getString("title");
                 JSONArray bookAuthors = bookVolumeInfo.getJSONArray("authors");
+                String bookAuthorsString = "";
+                for (int x = 0; x < bookAuthors.length() - 1; x++) {
+                    bookAuthorsString += bookAuthors.getString(x) + ", ";
+                }
 
+                bookAuthorsString += bookAuthors.getString(bookAuthors.length() - 1);
+
+                books.add(new Book(bookTitle, bookAuthorsString));
             }
 
         } catch (JSONException e) {
