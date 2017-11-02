@@ -871,6 +871,7 @@ public final class QueryUtils {
                 JSONObject bookVolumeInfo = bookItem.getJSONObject("volumeInfo");
                 String bookTitle = bookVolumeInfo.getString("title");
                 JSONArray bookAuthors = bookVolumeInfo.getJSONArray("authors");
+                String bookURLString = bookVolumeInfo.getString("infoLink");
                 String bookAuthorsString = "";
                 for (int x = 0; x < bookAuthors.length() - 1; x++) {
                     bookAuthorsString += bookAuthors.getString(x) + ", ";
@@ -878,7 +879,7 @@ public final class QueryUtils {
 
                 bookAuthorsString += bookAuthors.getString(bookAuthors.length() - 1);
 
-                books.add(new Book(bookTitle, bookAuthorsString));
+                books.add(new Book(bookTitle, bookAuthorsString, bookURLString));
             }
 
         } catch (JSONException e) {
