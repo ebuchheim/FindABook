@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.os.Build.VERSION_CODES.BASE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button search = (Button) findViewById(R.id.search_button);
+        Button searchButton = (Button) findViewById(R.id.search_button);
 
-        search.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                new BookAsyncTask().execute("urls");
+                EditText userInput = (EditText) findViewById(R.id.search_bar);
+                String userInputString = userInput.getText().toString();
+                new BookAsyncTask().execute(userInputString);
             }
         });
-
-
     }
 
     private class BookAsyncTask extends AsyncTask<String, Void, ArrayList<Book>> {
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
 
-            return QueryUtils.parseBooks("");
+            return QueryUtils.FetchBookData(urls[0]);
         }
 
         @Override
